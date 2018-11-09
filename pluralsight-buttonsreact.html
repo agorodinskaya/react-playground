@@ -1,0 +1,57 @@
+<div id = 'root'></div>
+
+
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type = 'text/babel'>
+const root = document.getElementById("root");
+
+class Button extends React.Component {
+  // handleClick;
+  // handleClick = () => {
+  //   this.setState(prevState => ({
+  //     counter: prevState.counter + 1
+  //   }));
+  // };
+  render() {
+    return (
+      <button
+        onClick={() => this.props.onClickFunction(this.props.incrementValue)}
+      >
+        +{this.props.incrementValue}
+      </button>
+    );
+  }
+}
+
+const Result = props => {
+  return <div>{props.counter}</div>;
+};
+
+class App extends React.Component {
+  state = {
+    counter: 0
+  };
+  incrementCounter = incrementValue => {
+    this.setState(prevState => ({
+      counter: prevState.counter + incrementValue
+    }));
+  };
+  render() {
+    return (
+      <div>
+        SALUT
+        <Button incrementValue={1} onClickFunction={this.incrementCounter} />
+        <Button incrementValue={5} onClickFunction={this.incrementCounter} />
+        <Button incrementValue={10} onClickFunction={this.incrementCounter} />
+        <Button incrementValue={15} onClickFunction={this.incrementCounter} />
+        <Result counter={this.state.counter} />
+      </div>
+    );
+  }
+}
+ReactDOM.render(<App />, document.getElementById("root"));
+</script>
